@@ -2,9 +2,9 @@
 
 An open-source AI speaking coach that helps you become a fluent English speaker by practising real conversations.
 
-1. **Listen**: The app hears what your conversation partner says.
+1. **Listen**: the app hears what your conversation partner says.
 2. **Reply**: AI writes polished, high-level replies (IELTS band 9 style) as **text only**. No audio is generated for you.
-3. **Speak**: You read the reply aloud, yourself.
+3. **Speak**: you read the reply aloud, yourself.
 4. **Score**: AI checks your pronunciation word by word.
 
 Reading advanced replies out loud trains your tongue, and the target words from every reply go into a spaced-repetition deck, so vocabulary sticks without rote memorising.
