@@ -69,6 +69,7 @@ core/
   recorder.py           microphone recording
   reply.py              LLM prompts + reply parsing (OpenAI-compatible and Anthropic)
   pronunciation.py      word alignment and scoring
+  phonemes.py           phoneme scoring logic (not wired in yet, needs a phoneme recogniser)
   vocab.py              SQLite vocabulary deck with SM-2 spaced repetition
 tests/                  unit tests
 ```
