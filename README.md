@@ -13,7 +13,7 @@ Reading advanced replies out loud trains your tongue, and the target words from 
 
 ## Quick start
 
-Requirements: Python 3.9+, a microphone, and an LLM (free local [Ollama](https://ollama.com) or an API key).
+Requirements: Python 3.9+ (tested on 3.12), a microphone for the full loop, and an LLM (free local [Ollama](https://ollama.com) or an API key).
 
 ```bash
 git clone https://github.com/KevinFixCode/CorrectMe.git
@@ -27,6 +27,8 @@ cp .env.example .env             # then edit the LLM settings
 ```
 
 For the free local setup: install Ollama, run `ollama pull llama3.1`, and keep `LLM_PROVIDER=ollama` in `.env`.
+
+The first run downloads the Whisper model set by `WHISPER_MODEL` (default `small`, roughly 460 MB). Use `base.en` for a smaller, faster start.
 
 ## Usage
 
@@ -49,11 +51,13 @@ python main.py review
 
 Each practice turn shows a **natural** reply and an **advanced** reply, 2-4 target words with meanings, then scores you word by word and tells you which words to practise.
 
+No microphone yet? `score` works on any audio file. `practice` still needs a microphone for the read-aloud step.
+
 ## How the scoring works (and its limits)
 
 Your recording is transcribed by [faster-whisper](https://github.com/SYSTRAN/faster-whisper) and aligned against the sentence you were meant to read. A word scores high when it is recognised correctly **and** with high confidence.
 
-This measures *intelligibility*, not phoneme-level accuracy, and Whisper is forgiving of accents. Treat the score as "would a listener understand this word", not as an exam result. Phoneme-level scoring is on the roadmap.
+This measures *intelligibility*, not phoneme-level accuracy, and Whisper is forgiving of accents. Treat the score as "would a listener understand this word", not as an exam result. Every word that is wrong or not heard also lowers the overall score by 10 points, so a few missed words cannot hide behind many correct ones. Phoneme-level scoring is on the roadmap.
 
 ## Project layout
 
