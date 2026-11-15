@@ -59,10 +59,11 @@ def make_transcriber(settings: Settings) -> Transcriber:
 # --------------------------------------------------------------------------- commands
 
 def cmd_practice(args: argparse.Namespace) -> int:
-    from core.recorder import record_until_enter
+    from core.recorder import parse_device, record_until_enter
 
     settings = load_settings()
     level = (args.level or settings.level).upper()
+    device = parse_device(args.device)
     if level not in LEVELS:
         print(f"Unknown level '{level}'. Choose one of: {', '.join(LEVELS)}")
         return 2
@@ -86,7 +87,7 @@ def cmd_practice(args: argparse.Namespace) -> int:
             elif args.partner_audio:
                 partner_text = transcriber.transcribe(args.partner_audio, args.language).text
             else:
-                audio = record_until_enter(workdir / "partner.wav", "Press Enter, then let your partner speak")
+                audio = record_until_enter(workdir / "partner.wav", "Press Enter, then let your partner speak", device=device)
                 partner_text = transcriber.transcribe(audio, args.language).text
             if not partner_text:
                 print("  I didn't catch anything. Try again.")
@@ -127,7 +128,7 @@ def cmd_practice(args: argparse.Namespace) -> int:
             # 4. Score the pronunciation (retry as often as wanted)
             while True:
                 try:
-                    audio = record_until_enter(workdir / "you.wav", "Press Enter to START reading")
+                    audio = record_until_enter(workdir / "you.wav", "Press Enter to START reading", device=device)
                     heard = transcriber.transcribe(audio, args.language)
                 except RuntimeError as exc:
                     print(paint(f"  {exc}", "red"))
@@ -176,6 +177,19 @@ def cmd_review(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_devices(args: argparse.Namespace) -> int:
+    from core.recorder import list_input_devices
+
+    devices = list_input_devices()
+    if not devices:
+        print("No input devices found. Plug in a microphone or headset.")
+        return 1
+    for index, name, api in devices:
+        print(f"  {index:>3}  {name}  [{api}]")
+    print("\nUse one with: python main.py practice --device <number or part of the name>")
+    return 0
+
+
 # --------------------------------------------------------------------------- entry point
 
 def build_parser() -> argparse.ArgumentParser:
@@ -188,6 +202,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--partner-text", help="skip the microphone: type what your partner said")
     p.add_argument("--partner-audio", help="skip the microphone: audio file of your partner")
     p.add_argument("--language", default="en", help="language spoken (default: en)")
+    p.add_argument("--device", help="microphone: a number or part of the name (see: python main.py devices)")
     p.set_defaults(func=cmd_practice)
 
     s = sub.add_parser("score", help="score an audio file against the sentence it should contain")
@@ -199,6 +214,8 @@ def build_parser() -> argparse.ArgumentParser:
     r = sub.add_parser("review", help="flashcards for collected vocabulary")
     r.add_argument("--limit", type=int, default=20)
     r.set_defaults(func=cmd_review)
+    d = sub.add_parser("devices", help="list microphones you can record from")
+    d.set_defaults(func=cmd_devices)
     return parser
 
 
@@ -209,7 +226,7 @@ def main(argv=None) -> int:
     except (KeyboardInterrupt, EOFError):
         print("\nBye!")
         return 0
-    except (ImportError, FileNotFoundError, ValueError) as exc:
+    except (ImportError, FileNotFoundError, ValueError, RuntimeError) as exc:
         print(paint(f"Error: {exc}", "red"))
         return 1
 
