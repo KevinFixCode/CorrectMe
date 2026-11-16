@@ -123,3 +123,81 @@ def score_phonemes(expected: Sequence[str], heard: Sequence[str]) -> WordPhoneme
             results.append(PhonemeResult(expected[i], heard[j], round(sim * 100), status))
     score = round(sum(r.score for r in results) / len(results))
     return WordPhonemes(score=score, phonemes=results, extra=extra)
+
+
+# --------------------------------------------------------------------------- whole sentences
+
+
+PHONEME_FAIL_PENALTY = 15  # points off a word's score per wrong or missing sound
+WORD_FAIL_PENALTY = 10  # points off the overall score per word with a failed sound
+
+
+@dataclass
+class WordPhonemeResult:
+    word: str
+    score: Optional[int]  # None when the word is not in the dictionary
+    phonemes: list = field(default_factory=list)  # list[PhonemeResult]
+
+
+@dataclass
+class UtteranceResult:
+    overall: int
+    words: list = field(default_factory=list)  # list[WordPhonemeResult]
+    extra: list = field(default_factory=list)  # phonemes heard that matched nothing
+
+
+def _grade(sim: float):
+    score = round(sim * 100)
+    status = "ok" if sim >= 0.999 else "close" if sim >= 0.5 else "wrong"
+    return score, status
+
+
+def score_utterance(reference: str, heard: Sequence[str], lookup=reference_phonemes) -> UtteranceResult:
+    """Score a whole sentence: line up every expected phoneme against everything heard,
+    then hand each result back to the word it belongs to.
+
+    Words that are not in the pronunciation dictionary are skipped (score None).
+    `lookup` maps a word to its expected phonemes (or None); tests pass a fake one.
+    """
+    from .pronunciation import tokenize
+
+    words = tokenize(reference)
+    if not words:
+        raise ValueError("reference text has no words")
+
+    expected, owner = [], []
+    for index, word in enumerate(words):
+        for phone in lookup(word) or []:
+            expected.append(phone)
+            owner.append(index)
+    if not expected:
+        raise ValueError("none of the words are in the pronunciation dictionary")
+
+    heard = list(heard)
+    per_word = {index: [] for index in range(len(words))}
+    extra = []
+    for i, j in align(expected, heard):
+        if i is None:
+            extra.append(heard[j])
+        elif j is None:
+            per_word[owner[i]].append(PhonemeResult(expected[i], None, 0, "missing"))
+        else:
+            score, status = _grade(similarity(expected[i], heard[j]))
+            per_word[owner[i]].append(PhonemeResult(expected[i], heard[j], score, status))
+
+    results, scored, failed_words = [], [], 0
+    for index, word in enumerate(words):
+        items = per_word[index]
+        if items:
+            mean = sum(p.score for p in items) / len(items)
+            failures = sum(1 for p in items if p.status in ("wrong", "missing"))
+            score = max(0, round(mean - PHONEME_FAIL_PENALTY * failures))
+            if failures:
+                failed_words += 1
+        else:
+            score = None
+        if score is not None:
+            scored.append(score)
+        results.append(WordPhonemeResult(word, score, items))
+    overall = max(0, round(sum(scored) / len(scored) - WORD_FAIL_PENALTY * failed_words))
+    return UtteranceResult(overall=overall, words=results, extra=extra)

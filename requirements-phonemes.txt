@@ -1,0 +1,3 @@
+# Optional: phoneme-level scoring (python main.py score ... --phonemes)
+# First: pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+transformers

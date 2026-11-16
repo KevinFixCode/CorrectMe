@@ -145,11 +145,38 @@ def cmd_practice(args: argparse.Namespace) -> int:
     return 0
 
 
+def print_phonemes(reference: str, audio_path: str) -> None:
+    from core.phonemes import score_utterance
+    from core.recognizer import PhonemeRecognizer, phonemes_from_raw
+
+    print(paint("\n  Phoneme analysis (first run downloads a ~1.2 GB model)...", "dim"))
+    heard = phonemes_from_raw(PhonemeRecognizer().recognize_raw(audio_path))
+    print(paint(f"  Sounds heard: {' '.join(heard) or '(nothing)'}", "dim"))
+    if not heard:
+        print("  No speech sounds detected.")
+        return
+    result = score_utterance(reference, heard)
+    color = "green" if result.overall >= 85 else "yellow" if result.overall >= WEAK_THRESHOLD else "red"
+    print(f"  Sound score: {paint(str(result.overall) + '/100', color)}")
+    for w in result.words:
+        if w.score is None:
+            print(paint(f"    ? {w.word}  (not in dictionary, skipped)", "dim"))
+            continue
+        bad = [f"{ph.expected}->{ph.heard or 'missing'}" for ph in w.phonemes if ph.status != "ok"]
+        mark = paint("✓", "green") if not bad else paint("~", "yellow")
+        print(f"    {mark} {w.word} ({w.score}){'  ' + ', '.join(bad) if bad else ''}")
+    weak = [w.word for w in result.words if w.score is not None and w.score < WEAK_THRESHOLD]
+    if weak:
+        print(f"  Practise sounds in: {paint(', '.join(weak), 'bold')}")
+
+
 def cmd_score(args: argparse.Namespace) -> int:
     settings = load_settings()
     heard = make_transcriber(settings).transcribe(args.audio, args.language)
     print(paint(f"Heard: {heard.text or '(nothing)'}", "dim"))
     print_result(score_pronunciation(args.text, heard.words or heard.text))
+    if args.phonemes:
+        print_phonemes(args.text, args.audio)
     return 0
 
 
@@ -209,6 +236,7 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--text", required=True, help="the sentence that was supposed to be read")
     s.add_argument("--audio", required=True, help="audio file with the learner's recording")
     s.add_argument("--language", default="en")
+    s.add_argument("--phonemes", action="store_true", help="also analyse individual sounds (needs torch + transformers)")
     s.set_defaults(func=cmd_score)
 
     r = sub.add_parser("review", help="flashcards for collected vocabulary")
