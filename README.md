@@ -1,5 +1,7 @@
 # CorrectMe
 
+[![Tests](https://github.com/KevinFixCode/CorrectMe/actions/workflows/tests.yml/badge.svg)](https://github.com/KevinFixCode/CorrectMe/actions/workflows/tests.yml)
+
 An open-source AI speaking coach that helps you become a fluent English speaker by practising real conversations.
 
 1. **Listen**: the app hears what your conversation partner says.
@@ -13,14 +15,14 @@ Reading advanced replies out loud trains your tongue, and the target words from 
 
 ## Quick start
 
-Requirements: Python 3.9+ (tested on 3.12), a microphone for the full loop, and an LLM (free local [Ollama](https://ollama.com) or an API key).
+Requirements: Python 3.10+ (3.12 recommended; very new Python versions may lack wheels for some dependencies), a microphone for the full loop, and an LLM (free local [Ollama](https://ollama.com) or an API key).
 
 ```bash
 git clone https://github.com/KevinFixCode/CorrectMe.git
 cd CorrectMe
 
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+source .venv/bin/activate        # Windows PowerShell: .venv\Scripts\activate | Git Bash: source .venv/Scripts/activate
 pip install -r requirements.txt  # Linux may also need: sudo apt install libportaudio2
 
 cp .env.example .env             # then edit the LLM settings
