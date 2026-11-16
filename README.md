@@ -57,7 +57,19 @@ No microphone yet? `score` works on any audio file. `practice` still needs a mic
 
 Your recording is transcribed by [faster-whisper](https://github.com/SYSTRAN/faster-whisper) and aligned against the sentence you were meant to read. A word scores high when it is recognised correctly **and** with high confidence.
 
-This measures *intelligibility*, not phoneme-level accuracy, and Whisper is forgiving of accents. Treat the score as "would a listener understand this word", not as an exam result. Every word that is wrong or not heard also lowers the overall score by 10 points, so a few missed words cannot hide behind many correct ones. Phoneme-level scoring is on the roadmap.
+This measures *intelligibility*, not phoneme-level accuracy, and Whisper is forgiving of accents. Treat the score as "would a listener understand this word", not as an exam result. Every word that is wrong or not heard also lowers the overall score by 10 points, so a few missed words cannot hide behind many correct ones. For individual sounds, add `--phonemes` to `score` (see below).
+
+## Phoneme-level scoring (optional)
+
+`score --phonemes` also checks individual sounds, for example `th` said as `s`, or `l` and `r` swapped.
+
+```bash
+pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements-phonemes.txt
+python main.py score --text "I think so." --audio me.wav --phonemes
+```
+
+The first run downloads a wav2vec2 phoneme model (about 1.2 GB). Scoring weights are a first guess and have not yet been tuned on real learner recordings.
 
 ## Project layout
 
@@ -69,7 +81,8 @@ core/
   recorder.py           microphone recording
   reply.py              LLM prompts + reply parsing (OpenAI-compatible and Anthropic)
   pronunciation.py      word alignment and scoring
-  phonemes.py           phoneme scoring logic (not wired in yet, needs a phoneme recogniser)
+  phonemes.py           phoneme scoring logic (ARPAbet, CMU dictionary)
+  recognizer.py         wav2vec2 phoneme recogniser (optional, needs torch + transformers)
   vocab.py              SQLite vocabulary deck with SM-2 spaced repetition
 tests/                  unit tests
 ```
@@ -83,7 +96,8 @@ python -m unittest discover -s tests -t .
 ## Roadmap
 
 - [ ] Web interface (live partner audio, side-by-side replies, highlighted target words)
-- [ ] Phoneme-level scoring (wav2vec2 + goodness of pronunciation)
+- [x] Phoneme-level scoring (wav2vec2), available as `score --phonemes`
+- [ ] Tune the phoneme scoring weights on real learner recordings
 - [ ] Stress and intonation feedback
 - [ ] FSRS scheduling option
 - [ ] Mobile app
