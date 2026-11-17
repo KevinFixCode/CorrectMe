@@ -28,6 +28,10 @@ LEVELS = {
 }
 
 
+# Some providers (e.g. Groq behind Cloudflare) reject urllib's default User-Agent with HTTP 403 / error 1010.
+USER_AGENT = "CorrectMe/0.1 (+https://github.com/KevinFixCode/CorrectMe)"
+
+
 class LLMError(RuntimeError):
     """Raised when the language model cannot be reached or returns an error."""
 
@@ -146,7 +150,7 @@ def _post_json(url: str, payload: dict, headers: dict, timeout: int = 90) -> dic
     request = urllib.request.Request(
         url,
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json", **headers},
+        headers={"Content-Type": "application/json", "User-Agent": USER_AGENT, **headers},
         method="POST",
     )
     try:

@@ -141,6 +141,10 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(_Handler.captured["headers"]["x-api-key"], "test-key")
         self.assertIn("B2", _Handler.captured["body"]["system"])
 
+    def test_sends_custom_user_agent(self):
+        generate_reply(make_settings("ollama", self.base + "/v1"), "Hi there")
+        self.assertTrue(_Handler.captured["headers"]["user-agent"].startswith("CorrectMe/"))
+
     def test_missing_api_key(self):
         with self.assertRaises(LLMError):
             generate_reply(make_settings("openai", self.base + "/v1"), "Hi there")
