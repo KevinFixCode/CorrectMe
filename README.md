@@ -30,6 +30,32 @@ cp .env.example .env             # then edit the LLM settings
 
 For the free local setup: install Ollama, run `ollama pull llama3.1`, and keep `LLM_PROVIDER=ollama` in `.env`.
 
+### Choosing an LLM
+
+CorrectMe works with any of these. Set them in `.env`.
+
+| Option | `.env` settings |
+| --- | --- |
+| **Ollama** (local, free, large download) | `LLM_PROVIDER=ollama`, `LLM_MODEL=llama3.1` |
+| **Groq** (hosted, free tier available, no big download) | `LLM_PROVIDER=openai`, `LLM_BASE_URL=https://api.groq.com/openai/v1`, `LLM_MODEL=<a chat model>`, `LLM_API_KEY=<your key>` |
+| **OpenAI or other OpenAI-compatible APIs** | `LLM_PROVIDER=openai`, `LLM_BASE_URL=<endpoint>`, `LLM_MODEL=<model>`, `LLM_API_KEY=<key>` |
+| **Anthropic** | `LLM_PROVIDER=anthropic`, `LLM_MODEL=<model>`, `LLM_API_KEY=<key>` |
+
+Hosted model names change over time. If you get `model_not_found` (HTTP 404), list the models your key can use and pick a chat model (skip `whisper`, `guard` and `tts` models):
+
+```bash
+python -c "import json,urllib.request as u;from core.config import load_settings as l;s=l();r=u.Request(s.llm_base_url+'/models',headers={'Authorization':'Bearer '+s.llm_api_key,'User-Agent':'CorrectMe/0.1'});print('\\n'.join(sorted(m['id'] for m in json.load(u.urlopen(r))['data'])))"
+```
+
+Tested with Groq and `openai/gpt-oss-120b`. Never share or commit your API key; `.env` is already in `.gitignore`.
+
+**Troubleshooting**
+
+- `HTTP 403 ... error code: 1010`: the provider's firewall rejected the request. Update to the latest CorrectMe (it sends its own `User-Agent`).
+- `HTTP 404 model_not_found`: the model name is wrong or not available to your account. List models as shown above.
+- `HTTP 401`: the API key is wrong or was revoked.
+- `Cannot reach the LLM server`: with Ollama, start the Ollama app first.
+
 The first run downloads the Whisper model set by `WHISPER_MODEL` (default `small`, roughly 460 MB). Use `base.en` for a smaller, faster start.
 
 ## Usage
