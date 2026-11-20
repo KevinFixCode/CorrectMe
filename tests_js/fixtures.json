@@ -1,0 +1,2470 @@
+{
+ "pairs": [
+  [
+   "thorough",
+   "thorough",
+   1.0
+  ],
+  [
+   "thorough",
+   "through",
+   0.9333333333333333
+  ],
+  [
+   "thorough",
+   "think",
+   0.3076923076923077
+  ],
+  [
+   "thorough",
+   "sink",
+   0.0
+  ],
+  [
+   "thorough",
+   "rural",
+   0.3076923076923077
+  ],
+  [
+   "thorough",
+   "rule",
+   0.3333333333333333
+  ],
+  [
+   "thorough",
+   "fascinated",
+   0.1111111111111111
+  ],
+  [
+   "thorough",
+   "fascinate",
+   0.11764705882352941
+  ],
+  [
+   "thorough",
+   "a",
+   0.0
+  ],
+  [
+   "thorough",
+   "",
+   0.0
+  ],
+  [
+   "thorough",
+   "ab",
+   0.0
+  ],
+  [
+   "thorough",
+   "abcabc",
+   0.0
+  ],
+  [
+   "thorough",
+   "bcabca",
+   0.0
+  ],
+  [
+   "thorough",
+   "interdisciplinary",
+   0.16
+  ],
+  [
+   "thorough",
+   "inter",
+   0.3076923076923077
+  ],
+  [
+   "thorough",
+   "night",
+   0.3076923076923077
+  ],
+  [
+   "thorough",
+   "knight",
+   0.2857142857142857
+  ],
+  [
+   "thorough",
+   "elaborate",
+   0.23529411764705882
+  ],
+  [
+   "thorough",
+   "elaborated",
+   0.2222222222222222
+  ],
+  [
+   "through",
+   "thorough",
+   0.9333333333333333
+  ],
+  [
+   "through",
+   "through",
+   1.0
+  ],
+  [
+   "through",
+   "think",
+   0.3333333333333333
+  ],
+  [
+   "through",
+   "sink",
+   0.0
+  ],
+  [
+   "through",
+   "rural",
+   0.3333333333333333
+  ],
+  [
+   "through",
+   "rule",
+   0.36363636363636365
+  ],
+  [
+   "through",
+   "fascinated",
+   0.11764705882352941
+  ],
+  [
+   "through",
+   "fascinate",
+   0.125
+  ],
+  [
+   "through",
+   "a",
+   0.0
+  ],
+  [
+   "through",
+   "",
+   0.0
+  ],
+  [
+   "through",
+   "ab",
+   0.0
+  ],
+  [
+   "through",
+   "abcabc",
+   0.0
+  ],
+  [
+   "through",
+   "bcabca",
+   0.0
+  ],
+  [
+   "through",
+   "interdisciplinary",
+   0.16666666666666666
+  ],
+  [
+   "through",
+   "inter",
+   0.3333333333333333
+  ],
+  [
+   "through",
+   "night",
+   0.3333333333333333
+  ],
+  [
+   "through",
+   "knight",
+   0.3076923076923077
+  ],
+  [
+   "through",
+   "elaborate",
+   0.125
+  ],
+  [
+   "through",
+   "elaborated",
+   0.11764705882352941
+  ],
+  [
+   "think",
+   "thorough",
+   0.3076923076923077
+  ],
+  [
+   "think",
+   "through",
+   0.3333333333333333
+  ],
+  [
+   "think",
+   "think",
+   1.0
+  ],
+  [
+   "think",
+   "sink",
+   0.6666666666666666
+  ],
+  [
+   "think",
+   "rural",
+   0.0
+  ],
+  [
+   "think",
+   "rule",
+   0.0
+  ],
+  [
+   "think",
+   "fascinated",
+   0.26666666666666666
+  ],
+  [
+   "think",
+   "fascinate",
+   0.2857142857142857
+  ],
+  [
+   "think",
+   "a",
+   0.0
+  ],
+  [
+   "think",
+   "",
+   0.0
+  ],
+  [
+   "think",
+   "ab",
+   0.0
+  ],
+  [
+   "think",
+   "abcabc",
+   0.0
+  ],
+  [
+   "think",
+   "bcabca",
+   0.0
+  ],
+  [
+   "think",
+   "interdisciplinary",
+   0.18181818181818182
+  ],
+  [
+   "think",
+   "inter",
+   0.4
+  ],
+  [
+   "think",
+   "night",
+   0.2
+  ],
+  [
+   "think",
+   "knight",
+   0.18181818181818182
+  ],
+  [
+   "think",
+   "elaborate",
+   0.14285714285714285
+  ],
+  [
+   "think",
+   "elaborated",
+   0.13333333333333333
+  ],
+  [
+   "sink",
+   "thorough",
+   0.0
+  ],
+  [
+   "sink",
+   "through",
+   0.0
+  ],
+  [
+   "sink",
+   "think",
+   0.6666666666666666
+  ],
+  [
+   "sink",
+   "sink",
+   1.0
+  ],
+  [
+   "sink",
+   "rural",
+   0.0
+  ],
+  [
+   "sink",
+   "rule",
+   0.0
+  ],
+  [
+   "sink",
+   "fascinated",
+   0.42857142857142855
+  ],
+  [
+   "sink",
+   "fascinate",
+   0.46153846153846156
+  ],
+  [
+   "sink",
+   "a",
+   0.0
+  ],
+  [
+   "sink",
+   "",
+   0.0
+  ],
+  [
+   "sink",
+   "ab",
+   0.0
+  ],
+  [
+   "sink",
+   "abcabc",
+   0.0
+  ],
+  [
+   "sink",
+   "bcabca",
+   0.0
+  ],
+  [
+   "sink",
+   "interdisciplinary",
+   0.19047619047619047
+  ],
+  [
+   "sink",
+   "inter",
+   0.4444444444444444
+  ],
+  [
+   "sink",
+   "night",
+   0.2222222222222222
+  ],
+  [
+   "sink",
+   "knight",
+   0.2
+  ],
+  [
+   "sink",
+   "elaborate",
+   0.0
+  ],
+  [
+   "sink",
+   "elaborated",
+   0.0
+  ],
+  [
+   "rural",
+   "thorough",
+   0.3076923076923077
+  ],
+  [
+   "rural",
+   "through",
+   0.3333333333333333
+  ],
+  [
+   "rural",
+   "think",
+   0.0
+  ],
+  [
+   "rural",
+   "sink",
+   0.0
+  ],
+  [
+   "rural",
+   "rural",
+   1.0
+  ],
+  [
+   "rural",
+   "rule",
+   0.6666666666666666
+  ],
+  [
+   "rural",
+   "fascinated",
+   0.13333333333333333
+  ],
+  [
+   "rural",
+   "fascinate",
+   0.14285714285714285
+  ],
+  [
+   "rural",
+   "a",
+   0.3333333333333333
+  ],
+  [
+   "rural",
+   "",
+   0.0
+  ],
+  [
+   "rural",
+   "ab",
+   0.2857142857142857
+  ],
+  [
+   "rural",
+   "abcabc",
+   0.18181818181818182
+  ],
+  [
+   "rural",
+   "bcabca",
+   0.18181818181818182
+  ],
+  [
+   "rural",
+   "interdisciplinary",
+   0.18181818181818182
+  ],
+  [
+   "rural",
+   "inter",
+   0.2
+  ],
+  [
+   "rural",
+   "night",
+   0.0
+  ],
+  [
+   "rural",
+   "knight",
+   0.0
+  ],
+  [
+   "rural",
+   "elaborate",
+   0.2857142857142857
+  ],
+  [
+   "rural",
+   "elaborated",
+   0.26666666666666666
+  ],
+  [
+   "rule",
+   "thorough",
+   0.3333333333333333
+  ],
+  [
+   "rule",
+   "through",
+   0.36363636363636365
+  ],
+  [
+   "rule",
+   "think",
+   0.0
+  ],
+  [
+   "rule",
+   "sink",
+   0.0
+  ],
+  [
+   "rule",
+   "rural",
+   0.6666666666666666
+  ],
+  [
+   "rule",
+   "rule",
+   1.0
+  ],
+  [
+   "rule",
+   "fascinated",
+   0.14285714285714285
+  ],
+  [
+   "rule",
+   "fascinate",
+   0.15384615384615385
+  ],
+  [
+   "rule",
+   "a",
+   0.0
+  ],
+  [
+   "rule",
+   "",
+   0.0
+  ],
+  [
+   "rule",
+   "ab",
+   0.0
+  ],
+  [
+   "rule",
+   "abcabc",
+   0.0
+  ],
+  [
+   "rule",
+   "bcabca",
+   0.0
+  ],
+  [
+   "rule",
+   "interdisciplinary",
+   0.19047619047619047
+  ],
+  [
+   "rule",
+   "inter",
+   0.2222222222222222
+  ],
+  [
+   "rule",
+   "night",
+   0.0
+  ],
+  [
+   "rule",
+   "knight",
+   0.0
+  ],
+  [
+   "rule",
+   "elaborate",
+   0.3076923076923077
+  ],
+  [
+   "rule",
+   "elaborated",
+   0.2857142857142857
+  ],
+  [
+   "fascinated",
+   "thorough",
+   0.1111111111111111
+  ],
+  [
+   "fascinated",
+   "through",
+   0.11764705882352941
+  ],
+  [
+   "fascinated",
+   "think",
+   0.26666666666666666
+  ],
+  [
+   "fascinated",
+   "sink",
+   0.42857142857142855
+  ],
+  [
+   "fascinated",
+   "rural",
+   0.13333333333333333
+  ],
+  [
+   "fascinated",
+   "rule",
+   0.14285714285714285
+  ],
+  [
+   "fascinated",
+   "fascinated",
+   1.0
+  ],
+  [
+   "fascinated",
+   "fascinate",
+   0.9473684210526315
+  ],
+  [
+   "fascinated",
+   "a",
+   0.18181818181818182
+  ],
+  [
+   "fascinated",
+   "",
+   0.0
+  ],
+  [
+   "fascinated",
+   "ab",
+   0.16666666666666666
+  ],
+  [
+   "fascinated",
+   "abcabc",
+   0.375
+  ],
+  [
+   "fascinated",
+   "bcabca",
+   0.375
+  ],
+  [
+   "fascinated",
+   "interdisciplinary",
+   0.37037037037037035
+  ],
+  [
+   "fascinated",
+   "inter",
+   0.5333333333333333
+  ],
+  [
+   "fascinated",
+   "night",
+   0.26666666666666666
+  ],
+  [
+   "fascinated",
+   "knight",
+   0.25
+  ],
+  [
+   "fascinated",
+   "elaborate",
+   0.42105263157894735
+  ],
+  [
+   "fascinated",
+   "elaborated",
+   0.5
+  ],
+  [
+   "fascinate",
+   "thorough",
+   0.11764705882352941
+  ],
+  [
+   "fascinate",
+   "through",
+   0.125
+  ],
+  [
+   "fascinate",
+   "think",
+   0.2857142857142857
+  ],
+  [
+   "fascinate",
+   "sink",
+   0.46153846153846156
+  ],
+  [
+   "fascinate",
+   "rural",
+   0.14285714285714285
+  ],
+  [
+   "fascinate",
+   "rule",
+   0.15384615384615385
+  ],
+  [
+   "fascinate",
+   "fascinated",
+   0.9473684210526315
+  ],
+  [
+   "fascinate",
+   "fascinate",
+   1.0
+  ],
+  [
+   "fascinate",
+   "a",
+   0.2
+  ],
+  [
+   "fascinate",
+   "",
+   0.0
+  ],
+  [
+   "fascinate",
+   "ab",
+   0.18181818181818182
+  ],
+  [
+   "fascinate",
+   "abcabc",
+   0.4
+  ],
+  [
+   "fascinate",
+   "bcabca",
+   0.4
+  ],
+  [
+   "fascinate",
+   "interdisciplinary",
+   0.38461538461538464
+  ],
+  [
+   "fascinate",
+   "inter",
+   0.5714285714285714
+  ],
+  [
+   "fascinate",
+   "night",
+   0.2857142857142857
+  ],
+  [
+   "fascinate",
+   "knight",
+   0.26666666666666666
+  ],
+  [
+   "fascinate",
+   "elaborate",
+   0.4444444444444444
+  ],
+  [
+   "fascinate",
+   "elaborated",
+   0.42105263157894735
+  ],
+  [
+   "a",
+   "thorough",
+   0.0
+  ],
+  [
+   "a",
+   "through",
+   0.0
+  ],
+  [
+   "a",
+   "think",
+   0.0
+  ],
+  [
+   "a",
+   "sink",
+   0.0
+  ],
+  [
+   "a",
+   "rural",
+   0.3333333333333333
+  ],
+  [
+   "a",
+   "rule",
+   0.0
+  ],
+  [
+   "a",
+   "fascinated",
+   0.18181818181818182
+  ],
+  [
+   "a",
+   "fascinate",
+   0.2
+  ],
+  [
+   "a",
+   "a",
+   1.0
+  ],
+  [
+   "a",
+   "",
+   0.0
+  ],
+  [
+   "a",
+   "ab",
+   0.6666666666666666
+  ],
+  [
+   "a",
+   "abcabc",
+   0.2857142857142857
+  ],
+  [
+   "a",
+   "bcabca",
+   0.2857142857142857
+  ],
+  [
+   "a",
+   "interdisciplinary",
+   0.1111111111111111
+  ],
+  [
+   "a",
+   "inter",
+   0.0
+  ],
+  [
+   "a",
+   "night",
+   0.0
+  ],
+  [
+   "a",
+   "knight",
+   0.0
+  ],
+  [
+   "a",
+   "elaborate",
+   0.2
+  ],
+  [
+   "a",
+   "elaborated",
+   0.18181818181818182
+  ],
+  [
+   "",
+   "thorough",
+   0.0
+  ],
+  [
+   "",
+   "through",
+   0.0
+  ],
+  [
+   "",
+   "think",
+   0.0
+  ],
+  [
+   "",
+   "sink",
+   0.0
+  ],
+  [
+   "",
+   "rural",
+   0.0
+  ],
+  [
+   "",
+   "rule",
+   0.0
+  ],
+  [
+   "",
+   "fascinated",
+   0.0
+  ],
+  [
+   "",
+   "fascinate",
+   0.0
+  ],
+  [
+   "",
+   "a",
+   0.0
+  ],
+  [
+   "",
+   "",
+   1.0
+  ],
+  [
+   "",
+   "ab",
+   0.0
+  ],
+  [
+   "",
+   "abcabc",
+   0.0
+  ],
+  [
+   "",
+   "bcabca",
+   0.0
+  ],
+  [
+   "",
+   "interdisciplinary",
+   0.0
+  ],
+  [
+   "",
+   "inter",
+   0.0
+  ],
+  [
+   "",
+   "night",
+   0.0
+  ],
+  [
+   "",
+   "knight",
+   0.0
+  ],
+  [
+   "",
+   "elaborate",
+   0.0
+  ],
+  [
+   "",
+   "elaborated",
+   0.0
+  ],
+  [
+   "ab",
+   "thorough",
+   0.0
+  ],
+  [
+   "ab",
+   "through",
+   0.0
+  ],
+  [
+   "ab",
+   "think",
+   0.0
+  ],
+  [
+   "ab",
+   "sink",
+   0.0
+  ],
+  [
+   "ab",
+   "rural",
+   0.2857142857142857
+  ],
+  [
+   "ab",
+   "rule",
+   0.0
+  ],
+  [
+   "ab",
+   "fascinated",
+   0.16666666666666666
+  ],
+  [
+   "ab",
+   "fascinate",
+   0.18181818181818182
+  ],
+  [
+   "ab",
+   "a",
+   0.6666666666666666
+  ],
+  [
+   "ab",
+   "",
+   0.0
+  ],
+  [
+   "ab",
+   "ab",
+   1.0
+  ],
+  [
+   "ab",
+   "abcabc",
+   0.5
+  ],
+  [
+   "ab",
+   "bcabca",
+   0.5
+  ],
+  [
+   "ab",
+   "interdisciplinary",
+   0.10526315789473684
+  ],
+  [
+   "ab",
+   "inter",
+   0.0
+  ],
+  [
+   "ab",
+   "night",
+   0.0
+  ],
+  [
+   "ab",
+   "knight",
+   0.0
+  ],
+  [
+   "ab",
+   "elaborate",
+   0.36363636363636365
+  ],
+  [
+   "ab",
+   "elaborated",
+   0.3333333333333333
+  ],
+  [
+   "abcabc",
+   "thorough",
+   0.0
+  ],
+  [
+   "abcabc",
+   "through",
+   0.0
+  ],
+  [
+   "abcabc",
+   "think",
+   0.0
+  ],
+  [
+   "abcabc",
+   "sink",
+   0.0
+  ],
+  [
+   "abcabc",
+   "rural",
+   0.18181818181818182
+  ],
+  [
+   "abcabc",
+   "rule",
+   0.0
+  ],
+  [
+   "abcabc",
+   "fascinated",
+   0.375
+  ],
+  [
+   "abcabc",
+   "fascinate",
+   0.4
+  ],
+  [
+   "abcabc",
+   "a",
+   0.2857142857142857
+  ],
+  [
+   "abcabc",
+   "",
+   0.0
+  ],
+  [
+   "abcabc",
+   "ab",
+   0.5
+  ],
+  [
+   "abcabc",
+   "abcabc",
+   1.0
+  ],
+  [
+   "abcabc",
+   "bcabca",
+   0.8333333333333334
+  ],
+  [
+   "abcabc",
+   "interdisciplinary",
+   0.08695652173913043
+  ],
+  [
+   "abcabc",
+   "inter",
+   0.0
+  ],
+  [
+   "abcabc",
+   "night",
+   0.0
+  ],
+  [
+   "abcabc",
+   "knight",
+   0.0
+  ],
+  [
+   "abcabc",
+   "elaborate",
+   0.4
+  ],
+  [
+   "abcabc",
+   "elaborated",
+   0.375
+  ],
+  [
+   "bcabca",
+   "thorough",
+   0.0
+  ],
+  [
+   "bcabca",
+   "through",
+   0.0
+  ],
+  [
+   "bcabca",
+   "think",
+   0.0
+  ],
+  [
+   "bcabca",
+   "sink",
+   0.0
+  ],
+  [
+   "bcabca",
+   "rural",
+   0.18181818181818182
+  ],
+  [
+   "bcabca",
+   "rule",
+   0.0
+  ],
+  [
+   "bcabca",
+   "fascinated",
+   0.25
+  ],
+  [
+   "bcabca",
+   "fascinate",
+   0.26666666666666666
+  ],
+  [
+   "bcabca",
+   "a",
+   0.2857142857142857
+  ],
+  [
+   "bcabca",
+   "",
+   0.0
+  ],
+  [
+   "bcabca",
+   "ab",
+   0.5
+  ],
+  [
+   "bcabca",
+   "abcabc",
+   0.8333333333333334
+  ],
+  [
+   "bcabca",
+   "bcabca",
+   1.0
+  ],
+  [
+   "bcabca",
+   "interdisciplinary",
+   0.17391304347826086
+  ],
+  [
+   "bcabca",
+   "inter",
+   0.0
+  ],
+  [
+   "bcabca",
+   "night",
+   0.0
+  ],
+  [
+   "bcabca",
+   "knight",
+   0.0
+  ],
+  [
+   "bcabca",
+   "elaborate",
+   0.4
+  ],
+  [
+   "bcabca",
+   "elaborated",
+   0.375
+  ],
+  [
+   "interdisciplinary",
+   "thorough",
+   0.16
+  ],
+  [
+   "interdisciplinary",
+   "through",
+   0.16666666666666666
+  ],
+  [
+   "interdisciplinary",
+   "think",
+   0.18181818181818182
+  ],
+  [
+   "interdisciplinary",
+   "sink",
+   0.19047619047619047
+  ],
+  [
+   "interdisciplinary",
+   "rural",
+   0.18181818181818182
+  ],
+  [
+   "interdisciplinary",
+   "rule",
+   0.09523809523809523
+  ],
+  [
+   "interdisciplinary",
+   "fascinated",
+   0.37037037037037035
+  ],
+  [
+   "interdisciplinary",
+   "fascinate",
+   0.38461538461538464
+  ],
+  [
+   "interdisciplinary",
+   "a",
+   0.1111111111111111
+  ],
+  [
+   "interdisciplinary",
+   "",
+   0.0
+  ],
+  [
+   "interdisciplinary",
+   "ab",
+   0.10526315789473684
+  ],
+  [
+   "interdisciplinary",
+   "abcabc",
+   0.17391304347826086
+  ],
+  [
+   "interdisciplinary",
+   "bcabca",
+   0.17391304347826086
+  ],
+  [
+   "interdisciplinary",
+   "interdisciplinary",
+   1.0
+  ],
+  [
+   "interdisciplinary",
+   "inter",
+   0.45454545454545453
+  ],
+  [
+   "interdisciplinary",
+   "night",
+   0.18181818181818182
+  ],
+  [
+   "interdisciplinary",
+   "knight",
+   0.17391304347826086
+  ],
+  [
+   "interdisciplinary",
+   "elaborate",
+   0.15384615384615385
+  ],
+  [
+   "interdisciplinary",
+   "elaborated",
+   0.2222222222222222
+  ],
+  [
+   "inter",
+   "thorough",
+   0.3076923076923077
+  ],
+  [
+   "inter",
+   "through",
+   0.3333333333333333
+  ],
+  [
+   "inter",
+   "think",
+   0.4
+  ],
+  [
+   "inter",
+   "sink",
+   0.4444444444444444
+  ],
+  [
+   "inter",
+   "rural",
+   0.2
+  ],
+  [
+   "inter",
+   "rule",
+   0.2222222222222222
+  ],
+  [
+   "inter",
+   "fascinated",
+   0.5333333333333333
+  ],
+  [
+   "inter",
+   "fascinate",
+   0.5714285714285714
+  ],
+  [
+   "inter",
+   "a",
+   0.0
+  ],
+  [
+   "inter",
+   "",
+   0.0
+  ],
+  [
+   "inter",
+   "ab",
+   0.0
+  ],
+  [
+   "inter",
+   "abcabc",
+   0.0
+  ],
+  [
+   "inter",
+   "bcabca",
+   0.0
+  ],
+  [
+   "inter",
+   "interdisciplinary",
+   0.45454545454545453
+  ],
+  [
+   "inter",
+   "inter",
+   1.0
+  ],
+  [
+   "inter",
+   "night",
+   0.4
+  ],
+  [
+   "inter",
+   "knight",
+   0.36363636363636365
+  ],
+  [
+   "inter",
+   "elaborate",
+   0.2857142857142857
+  ],
+  [
+   "inter",
+   "elaborated",
+   0.26666666666666666
+  ],
+  [
+   "night",
+   "thorough",
+   0.3076923076923077
+  ],
+  [
+   "night",
+   "through",
+   0.3333333333333333
+  ],
+  [
+   "night",
+   "think",
+   0.2
+  ],
+  [
+   "night",
+   "sink",
+   0.2222222222222222
+  ],
+  [
+   "night",
+   "rural",
+   0.0
+  ],
+  [
+   "night",
+   "rule",
+   0.0
+  ],
+  [
+   "night",
+   "fascinated",
+   0.26666666666666666
+  ],
+  [
+   "night",
+   "fascinate",
+   0.2857142857142857
+  ],
+  [
+   "night",
+   "a",
+   0.0
+  ],
+  [
+   "night",
+   "",
+   0.0
+  ],
+  [
+   "night",
+   "ab",
+   0.0
+  ],
+  [
+   "night",
+   "abcabc",
+   0.0
+  ],
+  [
+   "night",
+   "bcabca",
+   0.0
+  ],
+  [
+   "night",
+   "interdisciplinary",
+   0.18181818181818182
+  ],
+  [
+   "night",
+   "inter",
+   0.4
+  ],
+  [
+   "night",
+   "night",
+   1.0
+  ],
+  [
+   "night",
+   "knight",
+   0.9090909090909091
+  ],
+  [
+   "night",
+   "elaborate",
+   0.14285714285714285
+  ],
+  [
+   "night",
+   "elaborated",
+   0.13333333333333333
+  ],
+  [
+   "knight",
+   "thorough",
+   0.2857142857142857
+  ],
+  [
+   "knight",
+   "through",
+   0.3076923076923077
+  ],
+  [
+   "knight",
+   "think",
+   0.18181818181818182
+  ],
+  [
+   "knight",
+   "sink",
+   0.2
+  ],
+  [
+   "knight",
+   "rural",
+   0.0
+  ],
+  [
+   "knight",
+   "rule",
+   0.0
+  ],
+  [
+   "knight",
+   "fascinated",
+   0.25
+  ],
+  [
+   "knight",
+   "fascinate",
+   0.26666666666666666
+  ],
+  [
+   "knight",
+   "a",
+   0.0
+  ],
+  [
+   "knight",
+   "",
+   0.0
+  ],
+  [
+   "knight",
+   "ab",
+   0.0
+  ],
+  [
+   "knight",
+   "abcabc",
+   0.0
+  ],
+  [
+   "knight",
+   "bcabca",
+   0.0
+  ],
+  [
+   "knight",
+   "interdisciplinary",
+   0.17391304347826086
+  ],
+  [
+   "knight",
+   "inter",
+   0.36363636363636365
+  ],
+  [
+   "knight",
+   "night",
+   0.9090909090909091
+  ],
+  [
+   "knight",
+   "knight",
+   1.0
+  ],
+  [
+   "knight",
+   "elaborate",
+   0.13333333333333333
+  ],
+  [
+   "knight",
+   "elaborated",
+   0.125
+  ],
+  [
+   "elaborate",
+   "thorough",
+   0.23529411764705882
+  ],
+  [
+   "elaborate",
+   "through",
+   0.125
+  ],
+  [
+   "elaborate",
+   "think",
+   0.14285714285714285
+  ],
+  [
+   "elaborate",
+   "sink",
+   0.0
+  ],
+  [
+   "elaborate",
+   "rural",
+   0.2857142857142857
+  ],
+  [
+   "elaborate",
+   "rule",
+   0.15384615384615385
+  ],
+  [
+   "elaborate",
+   "fascinated",
+   0.42105263157894735
+  ],
+  [
+   "elaborate",
+   "fascinate",
+   0.4444444444444444
+  ],
+  [
+   "elaborate",
+   "a",
+   0.2
+  ],
+  [
+   "elaborate",
+   "",
+   0.0
+  ],
+  [
+   "elaborate",
+   "ab",
+   0.36363636363636365
+  ],
+  [
+   "elaborate",
+   "abcabc",
+   0.4
+  ],
+  [
+   "elaborate",
+   "bcabca",
+   0.4
+  ],
+  [
+   "elaborate",
+   "interdisciplinary",
+   0.15384615384615385
+  ],
+  [
+   "elaborate",
+   "inter",
+   0.2857142857142857
+  ],
+  [
+   "elaborate",
+   "night",
+   0.14285714285714285
+  ],
+  [
+   "elaborate",
+   "knight",
+   0.13333333333333333
+  ],
+  [
+   "elaborate",
+   "elaborate",
+   1.0
+  ],
+  [
+   "elaborate",
+   "elaborated",
+   0.9473684210526315
+  ],
+  [
+   "elaborated",
+   "thorough",
+   0.2222222222222222
+  ],
+  [
+   "elaborated",
+   "through",
+   0.11764705882352941
+  ],
+  [
+   "elaborated",
+   "think",
+   0.13333333333333333
+  ],
+  [
+   "elaborated",
+   "sink",
+   0.0
+  ],
+  [
+   "elaborated",
+   "rural",
+   0.26666666666666666
+  ],
+  [
+   "elaborated",
+   "rule",
+   0.14285714285714285
+  ],
+  [
+   "elaborated",
+   "fascinated",
+   0.5
+  ],
+  [
+   "elaborated",
+   "fascinate",
+   0.42105263157894735
+  ],
+  [
+   "elaborated",
+   "a",
+   0.18181818181818182
+  ],
+  [
+   "elaborated",
+   "",
+   0.0
+  ],
+  [
+   "elaborated",
+   "ab",
+   0.3333333333333333
+  ],
+  [
+   "elaborated",
+   "abcabc",
+   0.375
+  ],
+  [
+   "elaborated",
+   "bcabca",
+   0.375
+  ],
+  [
+   "elaborated",
+   "interdisciplinary",
+   0.2222222222222222
+  ],
+  [
+   "elaborated",
+   "inter",
+   0.26666666666666666
+  ],
+  [
+   "elaborated",
+   "night",
+   0.13333333333333333
+  ],
+  [
+   "elaborated",
+   "knight",
+   0.125
+  ],
+  [
+   "elaborated",
+   "elaborate",
+   0.9473684210526315
+  ],
+  [
+   "elaborated",
+   "elaborated",
+   1.0
+  ]
+ ],
+ "cases": [
+  {
+   "reference": "I would be delighted to join you.",
+   "heard": "i would be delighted to join you",
+   "expected": {
+    "overall": 100,
+    "words": [
+     {
+      "reference": "i",
+      "heard": "i",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "would",
+      "heard": "would",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "be",
+      "heard": "be",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "delighted",
+      "heard": "delighted",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "to",
+      "heard": "to",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "join",
+      "heard": "join",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "you",
+      "heard": "you",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "this is truly remarkable",
+   "heard": "this is remarkable",
+   "expected": {
+    "overall": 65,
+    "words": [
+     {
+      "reference": "this",
+      "heard": "this",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "is",
+      "heard": "is",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "truly",
+      "heard": null,
+      "score": 0,
+      "status": "missing"
+     },
+     {
+      "reference": "remarkable",
+      "heard": "remarkable",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "a thorough analysis",
+   "heard": "a through analysis",
+   "expected": {
+    "overall": 88,
+    "words": [
+     {
+      "reference": "a",
+      "heard": "a",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "thorough",
+      "heard": "through",
+      "score": 65,
+      "status": "close"
+     },
+     {
+      "reference": "analysis",
+      "heard": "analysis",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "we met yesterday",
+   "heard": "we met banana",
+   "expected": {
+    "overall": 58,
+    "words": [
+     {
+      "reference": "we",
+      "heard": "we",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "met",
+      "heard": "met",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "yesterday",
+      "heard": "banana",
+      "score": 4,
+      "status": "wrong"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "good morning",
+   "heard": "well good morning everyone",
+   "expected": {
+    "overall": 100,
+    "words": [
+     {
+      "reference": "good",
+      "heard": "good",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "morning",
+      "heard": "morning",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": [
+     "well",
+     "everyone"
+    ]
+   }
+  },
+  {
+   "reference": "good morning",
+   "heard": "",
+   "expected": {
+    "overall": 0,
+    "words": [
+     {
+      "reference": "good",
+      "heard": null,
+      "score": 0,
+      "status": "missing"
+     },
+     {
+      "reference": "morning",
+      "heard": null,
+      "score": 0,
+      "status": "missing"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "It was the sheer elegance of the mathematical models that had drawn me to this discipline",
+   "heard": "it was the sheer elegance of the mathematical model that drawn me to the discipline",
+   "expected": {
+    "overall": 66,
+    "words": [
+     {
+      "reference": "it",
+      "heard": "it",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "was",
+      "heard": "was",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "the",
+      "heard": "the",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "sheer",
+      "heard": "sheer",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "elegance",
+      "heard": "elegance",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "of",
+      "heard": "of",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "the",
+      "heard": "the",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "mathematical",
+      "heard": "mathematical",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "models",
+      "heard": "model",
+      "score": 64,
+      "status": "close"
+     },
+     {
+      "reference": "that",
+      "heard": "that",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "had",
+      "heard": null,
+      "score": 0,
+      "status": "missing"
+     },
+     {
+      "reference": "drawn",
+      "heard": "drawn",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "me",
+      "heard": "me",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "to",
+      "heard": "to",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "this",
+      "heard": "the",
+      "score": 17,
+      "status": "wrong"
+     },
+     {
+      "reference": "discipline",
+      "heard": "discipline",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "Seldom have I encountered such an intriguing proposition; do elaborate.",
+   "heard": "seldom have i encountered such an interesting proposition do a elaborate",
+   "expected": {
+    "overall": 95,
+    "words": [
+     {
+      "reference": "seldom",
+      "heard": "seldom",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "have",
+      "heard": "have",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "i",
+      "heard": "i",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "encountered",
+      "heard": "encountered",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "such",
+      "heard": "such",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "an",
+      "heard": "an",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "intriguing",
+      "heard": "interesting",
+      "score": 47,
+      "status": "close"
+     },
+     {
+      "reference": "proposition",
+      "heard": "proposition",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "do",
+      "heard": "do",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "elaborate",
+      "heard": "elaborate",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": [
+     "a"
+    ]
+   }
+  },
+  {
+   "reference": "I think so, and she thinks so too.",
+   "heard": "i sink so and she thinks so two",
+   "expected": {
+    "overall": 87,
+    "words": [
+     {
+      "reference": "i",
+      "heard": "i",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "think",
+      "heard": "sink",
+      "score": 47,
+      "status": "close"
+     },
+     {
+      "reference": "so",
+      "heard": "so",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "and",
+      "heard": "and",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "she",
+      "heard": "she",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "thinks",
+      "heard": "thinks",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "so",
+      "heard": "so",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "too",
+      "heard": "two",
+      "score": 47,
+      "status": "close"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "Rural areas particularly worry me",
+   "heard": "rule areas particular worry me",
+   "expected": {
+    "overall": 82,
+    "words": [
+     {
+      "reference": "rural",
+      "heard": "rule",
+      "score": 47,
+      "status": "close"
+     },
+     {
+      "reference": "areas",
+      "heard": "areas",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "particularly",
+      "heard": "particular",
+      "score": 64,
+      "status": "close"
+     },
+     {
+      "reference": "worry",
+      "heard": "worry",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "me",
+      "heard": "me",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "don't you think it's fascinating",
+   "heard": "dont you think its fascinating",
+   "expected": {
+    "overall": 84,
+    "words": [
+     {
+      "reference": "don't",
+      "heard": "dont",
+      "score": 62,
+      "status": "close"
+     },
+     {
+      "reference": "you",
+      "heard": "you",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "think",
+      "heard": "think",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "it's",
+      "heard": "its",
+      "score": 60,
+      "status": "close"
+     },
+     {
+      "reference": "fascinating",
+      "heard": "fascinating",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "fascinated interdisciplinary culminated",
+   "heard": "fascinate it inter disciplinary culminated",
+   "expected": {
+    "overall": 75,
+    "words": [
+     {
+      "reference": "fascinated",
+      "heard": "fascinate",
+      "score": 66,
+      "status": "close"
+     },
+     {
+      "reference": "interdisciplinary",
+      "heard": "disciplinary",
+      "score": 58,
+      "status": "close"
+     },
+     {
+      "reference": "culminated",
+      "heard": "culminated",
+      "score": 100,
+      "status": "correct"
+     }
+    ],
+    "extra": [
+     "it",
+     "inter"
+    ]
+   }
+  },
+  {
+   "reference": "good morning everyone",
+   "heard": [
+    {
+     "word": "good",
+     "probability": 1.0
+    },
+    {
+     "word": "morning",
+     "probability": 0.4
+    },
+    {
+     "word": "everyone",
+     "probability": 0.0
+    }
+   ],
+   "expected": {
+    "overall": 79,
+    "words": [
+     {
+      "reference": "good",
+      "heard": "good",
+      "score": 100,
+      "status": "correct"
+     },
+     {
+      "reference": "morning",
+      "heard": "morning",
+      "score": 76,
+      "status": "correct"
+     },
+     {
+      "reference": "everyone",
+      "heard": "everyone",
+      "score": 60,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "she sells sea shells",
+   "heard": [
+    {
+     "word": "she",
+     "probability": 0.95
+    },
+    {
+     "word": "sells",
+     "probability": 0.5
+    },
+    {
+     "word": "sea",
+     "probability": 0.77
+    },
+    {
+     "word": "shells",
+     "probability": 0.123
+    }
+   ],
+   "expected": {
+    "overall": 84,
+    "words": [
+     {
+      "reference": "she",
+      "heard": "she",
+      "score": 98,
+      "status": "correct"
+     },
+     {
+      "reference": "sells",
+      "heard": "sells",
+      "score": 80,
+      "status": "correct"
+     },
+     {
+      "reference": "sea",
+      "heard": "sea",
+      "score": 91,
+      "status": "correct"
+     },
+     {
+      "reference": "shells",
+      "heard": "shells",
+      "score": 65,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  },
+  {
+   "reference": "hello world",
+   "heard": [
+    {
+     "word": "Hello,",
+     "probability": 0.5
+    },
+    {
+     "word": "world.",
+     "probability": 0.25
+    }
+   ],
+   "expected": {
+    "overall": 75,
+    "words": [
+     {
+      "reference": "hello",
+      "heard": "hello",
+      "score": 80,
+      "status": "correct"
+     },
+     {
+      "reference": "world",
+      "heard": "world",
+      "score": 70,
+      "status": "correct"
+     }
+    ],
+    "extra": []
+   }
+  }
+ ]
+}

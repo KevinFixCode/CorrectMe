@@ -13,6 +13,19 @@ Reading advanced replies out loud trains your tongue, and the target words from 
 
 > *Bahasa Indonesia:* CorrectMe mendengar lawan bicara, menuliskan balasan level tinggi (teks saja), kamu membacanya dengan suara sendiri, lalu AI menilai pronunciation kamu. Kata-kata barunya otomatis masuk ke kartu hafalan.
 
+## Use it on your phone (web app)
+
+CorrectMe also runs as a web page, so there is nothing to install: open it in your phone's browser, add it to the home screen, and practise.
+
+- **Free for everyone, no server.** The page runs entirely in the browser. Each person brings their own API key (for example a free key from [console.groq.com](https://console.groq.com)), so there is no shared quota to run out. Free tiers have their own rate limits.
+- **Your data stays on your device.** The key and your vocabulary deck are stored in the browser only. Your speech and text go to the speech and AI services you choose.
+- **Two speech engines** (Settings): the browser's built-in recognition (free and fast, but it tends to forgive mistakes) or Whisper through your API key (stricter, and it works on iPhone).
+- Phoneme-level scoring is desktop-only for now, because it needs a heavy model.
+
+**Publish your own copy for free (GitHub Pages):** in your fork go to *Settings, Pages*, choose *Deploy from a branch*, branch `main`, folder `/docs`, and save. The page appears at `https://<your-username>.github.io/CorrectMe/`.
+
+To try it locally: `python -m http.server 8000 --directory docs`, then open `http://localhost:8000`.
+
 ## Quick start
 
 Requirements: Python 3.10+ (3.12 recommended; very new Python versions may lack wheels for some dependencies), a microphone for the full loop, and an LLM (free local [Ollama](https://ollama.com) or an API key).
@@ -112,18 +125,23 @@ core/
   phonemes.py           phoneme scoring logic (ARPAbet, CMU dictionary)
   recognizer.py         wav2vec2 phoneme recogniser (optional, needs torch + transformers)
   vocab.py              SQLite vocabulary deck with SM-2 spaced repetition
-tests/                  unit tests
+docs/                   web app (static PWA, published with GitHub Pages)
+  lib.js                scoring, spaced repetition and prompts (port of the Python logic)
+  app.js                user interface, speech capture and API calls
+tests/                  Python unit tests
+tests_js/               web app tests (checked against Python results)
 ```
 
 Run the tests (no network or model downloads needed):
 
 ```bash
 python -m unittest discover -s tests -t .
+node --test "tests_js/*.test.js"      # web app tests (Node 20+)
 ```
 
 ## Roadmap
 
-- [ ] Web interface (live partner audio, side-by-side replies, highlighted target words)
+- [x] Web interface for phones (`docs/`), bring your own API key
 - [x] Phoneme-level scoring (wav2vec2), available as `score --phonemes`
 - [ ] Tune the phoneme scoring weights on real learner recordings
 - [ ] Stress and intonation feedback

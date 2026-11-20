@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CorrectMe</title>
+  <meta name="description" content="Pelatih speaking bahasa Inggris berbasis AI: baca balasan level tinggi dengan suaramu sendiri dan dapatkan skor pronunciation.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>CorrectMe</h1>
+    <span id="engine-badge" class="badge" aria-live="polite"></span>
+  </header>
+  <main id="view" aria-live="polite"></main>
+  <nav class="tabs" aria-label="Menu">
+    <button data-tab="practice" class="tab">Latihan</button>
+    <button data-tab="deck" class="tab">Kartu <span id="due-count" class="pill" hidden></span></button>
+    <button data-tab="settings" class="tab">Pengaturan</button>
+  </nav>
+  <noscript><p class="notice">CorrectMe membutuhkan JavaScript.</p></noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
