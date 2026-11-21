@@ -317,3 +317,123 @@ export function parseReply(raw) {
   }
   return { natural, advanced, targetWords };
 }
+
+// ---------------------------------------------------------------- speech correction
+
+const ISSUE_TYPES = new Set(["grammar", "word choice", "collocation", "unnatural", "other"]);
+const CEFR_LEVELS = new Set(["A1", "A2", "B1", "B2", "C1", "C2"]);
+
+/** Prompt for correcting free speech. `speaker` is "self" (the learner) or "other" (someone else). */
+export function buildCorrectionSystemPrompt(nativeLanguage, speaker = "self") {
+  const who =
+    speaker === "other"
+      ? "The speaker is another person, not the user: keep the explanations neutral and factual."
+      : "The speaker is the learner: explanations may address them directly.";
+  return (
+    "You are CorrectMe, an English speaking coach and editor. You receive a speech-to-text " +
+    "transcript of something said aloud.\n" +
+    `${who}\n\n` +
+    "Rules:\n" +
+    "- The text comes from speech recognition: ignore punctuation, capitalisation, spacing and filler " +
+    "words (um, uh). Never report those.\n" +
+    "- Report only genuine mistakes or clearly unnatural phrasing in grammar, word choice, collocation " +
+    "and sentence structure. Do not invent errors. If everything is acceptable, return an empty issues list.\n" +
+    "- Keep the speaker's meaning. \"original\" must be copied exactly from the transcript (a short span of " +
+    "1-6 words). \"fix\" is the corrected replacement for that span. \"type\" is one of: grammar, word choice, " +
+    "collocation, unnatural, other.\n" +
+    "- \"corrected\" is the full transcript with only the necessary fixes applied. \"polished\" is a more " +
+    "sophisticated, natural way to say the same thing (IELTS band 9 style, 1-3 sentences).\n" +
+    "- \"level\" is a rough CEFR estimate (A1-C2) based on this sample only.\n" +
+    `- Explanations: one or two short sentences in ${nativeLanguage}.\n` +
+    "- target_words: 0-3 useful words or collocations from \"polished\" worth learning, each with a short " +
+    `meaning in ${nativeLanguage} and a short English example sentence.\n` +
+    "- Respond with ONLY a JSON object, no markdown fences, in exactly this shape:\n" +
+    '{"corrected": "...", "polished": "...", "level": "B2", ' +
+    '"issues": [{"original": "...", "fix": "...", "type": "grammar", "explanation": "..."}], ' +
+    '"target_words": [{"word": "...", "meaning": "...", "example": "..."}]}'
+  );
+}
+
+export function buildCorrectionUserPrompt(transcript) {
+  return `Transcript:\n"${String(transcript).trim()}"`;
+}
+
+/** Parse the correction JSON. Unlike parseReply there is no plain-text fallback: the result needs structure. */
+export function parseCorrection(raw) {
+  const data = extractJson(raw);
+  if (data === null) throw new Error("The language model did not return the expected JSON.");
+  const corrected = String(data.corrected || "").trim();
+  const polished = String(data.polished || "").trim();
+  if (!corrected && !polished) throw new Error("The language model reply had no usable text.");
+
+  const issues = [];
+  for (const item of Array.isArray(data.issues) ? data.issues : []) {
+    if (!item || typeof item !== "object") continue;
+    const original = String(item.original || "").trim();
+    const fix = String(item.fix || "").trim();
+    if (!original || !fix || original.toLowerCase() === fix.toLowerCase()) continue;
+    const type = String(item.type || "other").trim().toLowerCase();
+    issues.push({
+      original,
+      fix,
+      type: ISSUE_TYPES.has(type) ? type : "other",
+      explanation: String(item.explanation || "").trim(),
+    });
+  }
+  const targetWords = [];
+  for (const item of Array.isArray(data.target_words) ? data.target_words : []) {
+    if (item && typeof item === "object" && String(item.word || "").trim()) {
+      targetWords.push({
+        word: String(item.word).trim(),
+        meaning: String(item.meaning || "").trim(),
+        example: String(item.example || "").trim(),
+      });
+    }
+  }
+  const level = String(data.level || "").trim().toUpperCase();
+  return {
+    corrected: corrected || polished,
+    polished: polished || corrected,
+    level: CEFR_LEVELS.has(level) ? level : "",
+    issues,
+    targetWords,
+  };
+}
+
+const isWordChar = (ch) => ch !== undefined && /[a-z0-9']/i.test(ch);
+
+/**
+ * Split `text` into parts so issues can be highlighted:
+ * [{text, issue: index | null}]. Each issue is matched once, case-insensitively, on word boundaries,
+ * and overlapping matches are skipped.
+ */
+export function segmentTranscript(text, issues) {
+  const lower = text.toLowerCase();
+  const spans = [];
+  issues.forEach((it, i) => {
+    const needle = String(it.original || "").toLowerCase().trim();
+    if (!needle) return;
+    let from = 0;
+    for (;;) {
+      const idx = lower.indexOf(needle, from);
+      if (idx === -1) return;
+      const end = idx + needle.length;
+      const bounded = !isWordChar(lower[idx - 1]) && !isWordChar(lower[end]);
+      if (bounded && !spans.some((s) => idx < s.end && end > s.start)) {
+        spans.push({ start: idx, end, issue: i });
+        return;
+      }
+      from = idx + 1;
+    }
+  });
+  spans.sort((a, b) => a.start - b.start);
+  const parts = [];
+  let pos = 0;
+  for (const s of spans) {
+    if (s.start > pos) parts.push({ text: text.slice(pos, s.start), issue: null });
+    parts.push({ text: text.slice(s.start, s.end), issue: s.issue });
+    pos = s.end;
+  }
+  if (pos < text.length) parts.push({ text: text.slice(pos), issue: null });
+  return parts;
+}

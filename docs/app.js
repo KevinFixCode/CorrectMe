@@ -1,7 +1,8 @@
 // CorrectMe web app. Everything runs in the browser; your key and deck stay on this device.
 import {
-  LEVELS, WEAK_THRESHOLD, addCard, buildSystemPrompt, buildUserPrompt, dueCards, parseReply,
-  reviewCard, scorePronunciation, weakWords, whisperToHeard,
+  LEVELS, WEAK_THRESHOLD, addCard, buildCorrectionSystemPrompt, buildCorrectionUserPrompt, buildSystemPrompt,
+  buildUserPrompt, dueCards, parseCorrection, parseReply, reviewCard, scorePronunciation, segmentTranscript,
+  weakWords, whisperToHeard,
 } from "./lib.js";
 
 // ------------------------------------------------------------------ storage
@@ -186,20 +187,37 @@ async function apiFetch(path, init = {}, cfg = settings) {
   try { return JSON.parse(text); } catch { throw new Error("Respons layanan AI bukan JSON yang valid."); }
 }
 
-async function generateReply(partnerText, history) {
+async function chat(system, user, temperature) {
   const json = await apiFetch("/chat/completions", {
     method: "POST",
     body: JSON.stringify({
       model: settings.model,
-      temperature: 0.7,
+      temperature,
       messages: [
-        { role: "system", content: buildSystemPrompt(settings.level, settings.nativeLanguage) },
-        { role: "user", content: buildUserPrompt(partnerText, history) },
+        { role: "system", content: system },
+        { role: "user", content: user },
       ],
     }),
   });
-  const content = json?.choices?.[0]?.message?.content;
+  return json?.choices?.[0]?.message?.content;
+}
+
+async function generateReply(partnerText, history) {
+  const content = await chat(
+    buildSystemPrompt(settings.level, settings.nativeLanguage),
+    buildUserPrompt(partnerText, history),
+    0.7
+  );
   return parseReply(content);
+}
+
+async function correctSpeech(text, speaker) {
+  const content = await chat(
+    buildCorrectionSystemPrompt(settings.nativeLanguage, speaker),
+    buildCorrectionUserPrompt(text),
+    0.2
+  );
+  return parseCorrection(content);
 }
 
 // ------------------------------------------------------------------ views
@@ -219,6 +237,7 @@ const state = {
   message: null, // {kind: 'error'|'notice', text}
   addedWords: 0,
   review: { revealed: false },
+  correct: { text: "", speaker: "self", result: null, analyzed: "", loading: false, added: 0 },
 };
 
 function go(tab) {
@@ -259,7 +278,10 @@ function updateChrome() {
 
 function render() {
   view.replaceChildren(
-    state.tab === "practice" ? renderPractice() : state.tab === "deck" ? renderDeck() : renderSettings()
+    state.tab === "practice" ? renderPractice()
+      : state.tab === "correct" ? renderCorrect()
+      : state.tab === "deck" ? renderDeck()
+      : renderSettings()
   );
   updateChrome();
 }
@@ -328,7 +350,8 @@ function renderPractice() {
 }
 
 function partnerStep() {
-  let makeBtn = { disabled: false }; // replaced by the real button once it is created
+  let makeBtn = { disabled: false }; // replaced by the real buttons once they are created
+  let fixBtn = { disabled: false };
   const ta = el("textarea", {
     id: "partner",
     placeholder: "Ketik apa kata lawan bicara, atau tekan mikrofon dan biarkan dia berbicara.",
@@ -338,6 +361,7 @@ function partnerStep() {
   ta.addEventListener("input", () => {
     state.partnerText = ta.value;
     makeBtn.disabled = state.busy || !ta.value.trim() || !!state.recording;
+    fixBtn.disabled = !ta.value.trim() || !!state.recording;
   });
 
   const mic = micButton(
@@ -385,6 +409,17 @@ function partnerStep() {
       },
       state.busy ? "Menulis balasan…" : "Buat balasan"
     ),
+    el("button", {
+      class: "btn secondary block",
+      type: "button",
+      style: "margin-top:10px",
+      disabled: !state.partnerText.trim() || !!state.recording,
+      ref: (node) => { fixBtn = node; },
+      onclick: () => {
+        state.correct = { ...state.correct, text: state.partnerText, speaker: "other", result: null };
+        go("correct");
+      },
+    }, "Koreksi kalimat ini"),
     el("p", { class: "muted" }, "Balasan hanya berupa teks. Kamu yang membacanya dengan suara sendiri.")
   );
 }
@@ -410,9 +445,9 @@ function repliesStep() {
   return el(
     "div",
     {},
-    el("p", { class: "muted" }, `Lawan bicara: “${state.partnerText.trim()}”`),
-    option("natural", "Natural"),
-    option("advanced", "Advanced"),
+    el("p", { class: "muted" }, r.context ?? `Lawan bicara: “${state.partnerText.trim()}”`),
+    option("natural", r.labels?.natural ?? "Natural"),
+    option("advanced", r.labels?.advanced ?? "Advanced"),
     r.targetWords.length ? el("h3", {}, "Kata target") : null,
     ...r.targetWords.map((t) =>
       el("div", { class: "target" }, el("b", {}, t.word), t.meaning ? ` — ${t.meaning}` : "",
@@ -466,6 +501,135 @@ function resultStep() {
         state.partnerText = ""; state.reply = null; state.result = null; state.step = "partner"; render();
       } }, "Giliran berikutnya"))
   );
+}
+
+// ---- correction
+
+const ISSUE_LABELS = {
+  grammar: "Tata bahasa",
+  "word choice": "Pilihan kata",
+  collocation: "Kolokasi",
+  unnatural: "Kurang natural",
+  other: "Lainnya",
+};
+
+function practiceCorrected() {
+  const c = state.correct;
+  const r = c.result;
+  state.reply = {
+    natural: r.corrected,
+    advanced: r.polished,
+    targetWords: [],
+    labels: { natural: "Versi benar", advanced: "Versi lebih tinggi" },
+    context: `Ucapan asli: “${c.analyzed.trim()}”`,
+  };
+  state.partnerText = c.analyzed;
+  state.version = "natural";
+  state.result = null;
+  state.addedWords = 0;
+  state.step = "replies";
+  go("practice");
+}
+
+function renderCorrect() {
+  const c = state.correct;
+  let correctBtn = { disabled: false };
+  const ta = el("textarea", {
+    id: "ctext",
+    placeholder: "Ucapkan atau ketik kalimat bahasa Inggris yang ingin dikoreksi.",
+    "aria-label": "Teks yang dikoreksi",
+  });
+  ta.value = c.text;
+  ta.addEventListener("input", () => {
+    c.text = ta.value;
+    correctBtn.disabled = c.loading || !ta.value.trim() || !!state.recording;
+  });
+  const who = el("select", { id: "speaker", "aria-label": "Siapa yang bicara" },
+    el("option", { value: "self" }, "Saya"), el("option", { value: "other" }, "Orang lain"));
+  who.value = c.speaker;
+  who.addEventListener("change", () => { c.speaker = who.value; render(); });
+
+  const mic = micButton("🎙️ Ucapkan atau rekam", (out) => {
+    if (out.error) state.message = { kind: "error", text: out.error };
+    else if (out.text) { c.text = out.text; c.result = null; }
+    else state.message = { kind: "notice", text: "Tidak ada suara tertangkap. Coba lagi." };
+    render();
+  });
+
+  const box = el("section", {},
+    messageBox(),
+    needsKey() ? el("div", { class: "notice" }, "Isi key API di tab Pengaturan dulu.") : null,
+    el("h2", {}, "Koreksi ucapan"),
+    el("p", { class: "muted" }, "Ucapkan apa saja dalam bahasa Inggris, atau ketik teksnya. Bisa ucapanmu sendiri atau orang lain."),
+    el("label", { for: "speaker" }, "Siapa yang bicara?"),
+    who,
+    c.speaker === "other" ? el("p", { class: "muted" }, "Beri tahu orang itu sebelum merekam suaranya.") : null,
+    el("label", { for: "ctext" }, "Ucapan"),
+    ta,
+    el("div", { id: "live", class: "live", "aria-live": "polite" }, state.recording ? state.live || "Mendengarkan…" : ""),
+    el("div", { class: "row" }, mic),
+    el("button", {
+      class: "btn block",
+      type: "button",
+      disabled: c.loading || !c.text.trim() || !!state.recording,
+      ref: (node) => { correctBtn = node; },
+      onclick: async () => {
+        c.loading = true;
+        c.result = null;
+        state.message = null;
+        render();
+        try {
+          const result = await correctSpeech(c.text, c.speaker);
+          c.analyzed = c.text;
+          c.added = 0;
+          for (const t of result.targetWords) if (addCard(deck, t)) c.added++;
+          saveDeck();
+          c.result = result;
+        } catch (err) {
+          state.message = { kind: "error", text: err.message };
+        }
+        c.loading = false;
+        render();
+      },
+    }, c.loading ? "Memeriksa…" : "Koreksi"),
+    el("p", { class: "muted" }, "Koreksi ini untuk tata bahasa dan pilihan kata. Pelafalan butuh teks acuan, jadi nilailah lewat tombol latihan baca di bawah hasil.")
+  );
+  if (c.result) box.append(correctionResult(c));
+  return box;
+}
+
+function correctionResult(c) {
+  const r = c.result;
+  const parts = segmentTranscript(c.analyzed, r.issues);
+  const out = el("div", {}, el("h3", {}, "Yang terdengar"),
+    el("p", { class: "transcript" }, parts.map((p) => (p.issue == null ? p.text : el("mark", { title: `Kesalahan ${p.issue + 1}` }, p.text)))));
+  if (r.level) out.append(el("p", { class: "muted" }, `Perkiraan level dari ucapan ini: ${r.level} (kasar, hanya dari satu contoh).`));
+
+  if (!r.issues.length) {
+    out.append(el("div", { class: "notice ok-note" }, "Tidak ada kesalahan berarti. Bagus!"));
+  } else {
+    out.append(el("h3", {}, `${r.issues.length} hal yang perlu diperbaiki`));
+    r.issues.forEach((it, i) => out.append(
+      el("div", { class: "card issue" },
+        el("div", { class: "label" }, `${i + 1}. ${ISSUE_LABELS[it.type] || ISSUE_LABELS.other}`),
+        el("div", {}, el("span", { class: "w bad" }, it.original), " → ", el("span", { class: "w ok" }, it.fix)),
+        it.explanation ? el("p", { class: "muted" }, it.explanation) : null)
+    ));
+  }
+  out.append(
+    el("div", { class: "card" }, el("div", { class: "label" }, "Versi benar"), el("div", {}, r.corrected)),
+    r.polished !== r.corrected ? el("div", { class: "card" }, el("div", { class: "label" }, "Versi lebih tinggi"), el("div", {}, r.polished)) : null
+  );
+  if (r.targetWords.length) {
+    out.append(el("h3", {}, "Kata untuk dipelajari"),
+      ...r.targetWords.map((t) => el("div", { class: "target" }, el("b", {}, t.word), t.meaning ? ` — ${t.meaning}` : "",
+        t.example ? el("div", { class: "muted" }, `“${t.example}”`) : null)),
+      c.added ? el("p", { class: "muted" }, `${c.added} kata baru masuk ke Kartu.`) : null);
+  }
+  out.append(el("div", { class: "row" },
+    el("button", { class: "btn", type: "button", onclick: practiceCorrected }, "Latih ucapkan versi yang benar"),
+    el("button", { class: "btn secondary", type: "button", onclick: () => { c.text = ""; c.result = null; render(); } }, "Koreksi lagi")));
+  return out;
 }
 
 // ---- deck
@@ -531,6 +695,10 @@ function renderSettings() {
     settings = { ...DEFAULTS, ...draft };
     const ok = saveSettings();
     state.message = ok ? { kind: "notice", text: "Tersimpan." } : { kind: "error", text: "Tidak bisa menyimpan (penyimpanan browser diblokir)." };
+    if (ok && !needsKey()) {
+      state.tab = "practice";
+      state.message = { kind: "notice", text: "Tersimpan. Silakan mulai berlatih." };
+    }
     render();
   };
 

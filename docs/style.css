@@ -103,3 +103,9 @@ button.btn.block { width: 100%; }
 @keyframes pulse { 50% { opacity: .25; } }
 details { margin: 12px 0; }
 summary { cursor: pointer; font-weight: 600; }
+.transcript { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+mark { background: var(--bad-bg); color: var(--bad); border-radius: 4px; padding: 0 3px; font-weight: 600; }
+.issue .label { color: var(--muted); }
+.ok-note { background: var(--ok-bg); color: var(--ok); }
+[role="status"] { white-space: pre-line; }
+.error { white-space: pre-line; }

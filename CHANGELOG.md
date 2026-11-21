@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Koreksi mode in the web app: correct grammar and word choice in free speech or text from any speaker, with a corrected and a polished version, and a shortcut to read the corrected sentence aloud for scoring.
 - Web app for phones and browsers (`docs/`): installable PWA, no server needed. Bring your own API key (for example a free Groq key).
 - Two speech engines: the browser's built-in recognition, or Whisper through your API key (also works on iPhone).
 - Word-level scoring ported to JavaScript and checked against the Python results (`tests_js/`).

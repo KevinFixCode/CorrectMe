@@ -20,6 +20,7 @@ CorrectMe also runs as a web page, so there is nothing to install: open it in yo
 - **Free for everyone, no server.** The page runs entirely in the browser. Each person brings their own API key (for example a free key from [console.groq.com](https://console.groq.com)), so there is no shared quota to run out. Free tiers have their own rate limits.
 - **Your data stays on your device.** The key and your vocabulary deck are stored in the browser only. Your speech and text go to the speech and AI services you choose.
 - **Two speech engines** (Settings): the browser's built-in recognition (free and fast, but it tends to forgive mistakes) or Whisper through your API key (stricter, and it works on iPhone).
+- **Koreksi mode:** speak or type any English, yours or someone else's, and get the mistakes marked (grammar, word choice, collocations) with short explanations in your language, a corrected version and a more polished version. One tap sends the corrected sentence to the read-aloud practice, which is where pronunciation gets scored. Correction works from a transcript, so it cannot judge pronunciation by itself: speech recognition often "fixes" a mispronounced word silently. Tell people before you record their voice.
 - Phoneme-level scoring is desktop-only for now, because it needs a heavy model.
 
 **Publish your own copy for free (GitHub Pages):** in your fork go to *Settings, Pages*, choose *Deploy from a branch*, branch `main`, folder `/docs`, and save. The page appears at `https://<your-username>.github.io/CorrectMe/`.

@@ -5,8 +5,9 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
-  addCard, addDays, buildSystemPrompt, buildUserPrompt, dueCards, parseReply, ratio, reviewCard,
-  scorePronunciation, tokenize, weakWords, whisperToHeard,
+  addCard, addDays, buildCorrectionSystemPrompt, buildCorrectionUserPrompt, buildSystemPrompt, buildUserPrompt,
+  dueCards, parseCorrection, parseReply, ratio, reviewCard, scorePronunciation, segmentTranscript, tokenize,
+  weakWords, whisperToHeard,
 } from "../docs/lib.js";
 
 const fixtures = JSON.parse(readFileSync(new URL("./fixtures.json", import.meta.url), "utf8"));
@@ -95,4 +96,52 @@ test("prompts and reply parsing", () => {
   assert.equal(parseReply(JSON.stringify({ natural: "Hello there." })).advanced, "Hello there.");
   assert.throws(() => parseReply("  "));
   assert.throws(() => parseReply("{}"));
+});
+
+test("correction prompt reflects the speaker and language", () => {
+  const me = buildCorrectionSystemPrompt("Indonesian", "self");
+  assert.match(me, /The speaker is the learner/);
+  assert.match(me, /in Indonesian/);
+  assert.match(buildCorrectionSystemPrompt("Indonesian", "other"), /another person, not the user/);
+  assert.equal(buildCorrectionUserPrompt("  I goes home "), 'Transcript:\n"I goes home"');
+});
+
+test("parseCorrection keeps valid issues and drops junk", () => {
+  const raw = JSON.stringify({
+    corrected: "I go home.", polished: "I am heading home.", level: "b1",
+    issues: [
+      { original: "goes", fix: "go", type: "Grammar", explanation: "Subjek I memakai go." },
+      { original: "same", fix: "SAME", type: "grammar" },
+      { original: "", fix: "x" },
+      { original: "home", fix: "house", type: "weird", explanation: "" },
+      "nonsense",
+    ],
+    target_words: [{ word: "heading", meaning: "menuju", example: "I am heading out." }, { word: " " }],
+  });
+  const r = parseCorrection("```json\n" + raw + "\n```");
+  assert.equal(r.level, "B1");
+  assert.deepEqual(r.issues.map((i) => [i.original, i.fix, i.type]), [["goes", "go", "grammar"], ["home", "house", "other"]]);
+  assert.deepEqual(r.targetWords.map((t) => t.word), ["heading"]);
+  assert.equal(parseCorrection(JSON.stringify({ corrected: "Hi." })).polished, "Hi.");
+  assert.equal(parseCorrection(JSON.stringify({ polished: "Hi." })).corrected, "Hi.");
+  assert.equal(parseCorrection(JSON.stringify({ corrected: "Hi.", level: "Z9" })).level, "");
+  assert.throws(() => parseCorrection("Sorry, I cannot do that."));
+  assert.throws(() => parseCorrection("{}"));
+});
+
+test("segmentTranscript highlights issues on word boundaries", () => {
+  const text = "Yesterday I go to the market and buyed a apple";
+  const parts = segmentTranscript(text, [
+    { original: "I go" }, { original: "buyed" }, { original: "a" }, { original: "missing phrase" },
+  ]);
+  assert.equal(parts.map((p) => p.text).join(""), text);
+  const marked = parts.filter((p) => p.issue !== null).map((p) => [p.text, p.issue]);
+  // "a" must match the standalone word, not the "a" inside "Yesterday" / "market"
+  assert.deepEqual(marked, [["I go", 0], ["buyed", 1], ["a", 2]]);
+  assert.equal(parts.find((p) => p.issue === 2).text, "a");
+  assert.ok(text.indexOf("a apple") === text.lastIndexOf("a apple"));
+  // overlapping issues: the second one is skipped
+  const o = segmentTranscript("I go home", [{ original: "I go" }, { original: "go home" }]);
+  assert.deepEqual(o.filter((p) => p.issue !== null).map((p) => p.text), ["I go"]);
+  assert.deepEqual(segmentTranscript("plain", []), [{ text: "plain", issue: null }]);
 });
